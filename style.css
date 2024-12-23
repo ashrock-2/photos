@@ -1,0 +1,47 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 1em 0;
+}
+
+/*@font-face {*/
+/*  font-family: "IropkeBatang";*/
+/*  src:*/
+/*    url("./IropkeBatangM.woff") format("woff"),*/
+/*    url("./fonts/IropkeBatangM.ttf") format("truetype");*/
+/*  font-display: block;*/
+/*}*/
+
+body {
+  line-height: calc(1em + 0.5rem);
+  /*font-family: "IropkeBatang", sans-serif;*/
+  background: hsl(240, 20%, 6%);
+  color: hsl(240, 42%, 92%);
+  justify-self: center;
+}
+
+a {
+  color: hsl(240, 82%, 92%);
+  text-decoration: none;
+
+  &:visited {
+    color: hsl(0, 82%, 92%);
+  }
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
