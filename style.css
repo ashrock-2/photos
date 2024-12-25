@@ -25,3 +25,10 @@ main {
 img {
   width: 100%;
 }
+
+.metadata {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  justify-self: end;
+  display: grid;
+}

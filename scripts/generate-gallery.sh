@@ -37,16 +37,40 @@ for image in "$PHOTO_DIR"/*.JPG; do
     
     # EXIF 데이터 추출
     datetime=$(exiftool -DateTimeOriginal -s -s -s "$image")
+    camera_model=$(exiftool -Model -s -s -s "$image")
+    lens_info=$(exiftool -LensModel -s -s -s "$image")
+    focal_length=$(exiftool -FocalLength -s -s -s "$image")
     fnumber=$(exiftool -FNumber -s -s -s "$image")
     iso=$(exiftool -ISO -s -s -s "$image")
     exposure=$(exiftool -ExposureTime -s -s -s "$image")
     
+    # GPS 정보 처리
+    lat=$(exiftool -GPSLatitude -s -s -s "$image")
+    lon=$(exiftool -GPSLongitude -s -s -s "$image")
+    alt=$(exiftool -GPSAltitude -s -s -s "$image")
+    
+    # GPS 정보가 있는 경우에만 위치 정보 표시
+    if [ ! -z "$lat" ] && [ ! -z "$lon" ]; then
+        gps_position="$lat, $lon"
+        gps_maps_link="https://maps.google.com/?q=$lat,$lon"
+        gps_altitude="$alt m"
+    else
+        gps_position="정보 없음"
+        gps_maps_link=""
+        gps_altitude="정보 없음"
+    fi
+    
     # 템플릿 파일 읽고 변수 치환
     sed -e "s|{{image_path}}|$relative_path|g" \
         -e "s|{{datetime}}|$datetime|g" \
+        -e "s|{{camera_model}}|$camera_model|g" \
+        -e "s|{{lens_info}}|$lens_info|g" \
+        -e "s|{{focal_length}}|$focal_length|g" \
         -e "s|{{fnumber}}|$fnumber|g" \
         -e "s|{{iso}}|$iso|g" \
         -e "s|{{exposure}}|$exposure|g" \
+        -e "s|{{gps_position}}|$gps_position|g" \
+        -e "s|{{gps_altitude}}|$gps_altitude|g" \
         "$TEMPLATE_DIR/photo-item.html" >> "$PROJECT_ROOT/index.html"
 done
 
