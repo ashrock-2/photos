@@ -11,7 +11,7 @@ PHOTO_DIR="$1"
 SCRIPT_DIR="$(dirname "$0")"
 PROJECT_ROOT="$(realpath "$SCRIPT_DIR/..")"
 TEMPLATE_DIR="$PROJECT_ROOT/templates"
-OUTPUT_DIR="$PROJECT_ROOT/gallery"
+OUTPUT_DIR="$PROJECT_ROOT"
 
 # 디렉토리 존재 확인
 if [ ! -d "$PHOTO_DIR" ]; then
@@ -24,14 +24,6 @@ if ! command -v exiftool &> /dev/null; then
     echo "exiftool이 설치되어 있지 않습니다."
     exit 1
 fi
-
-# 출력 디렉토리 생성
-mkdir -p "$OUTPUT_DIR"
-
-# CSS 파일 복사
-cp "$PROJECT_ROOT/style.css" "$OUTPUT_DIR/"
-cp "$PROJECT_ROOT/favicon.ico" "$OUTPUT_DIR/"
-cp -r "$PROJECT_ROOT/fonts" "$OUTPUT_DIR/"
 
 # 날짜별로 이미지 그룹화
 declare -A date_files
@@ -53,7 +45,7 @@ for date in $(echo ${(k)date_files} | tr ' ' '\n' | sort -r); do
     cat "$TEMPLATE_DIR/header.html" > "$output_file"
     echo "<h2>$date</h2>" >> "$output_file"
     
-    # 인덱스 페이지에 링크 추가 (상대 경로 수정)
+    # 인덱스 페이지에 링크 추가
     echo "<li><a href='$date.html'>$date</a></li>" >> "$OUTPUT_DIR/index.html"
     
     # 해당 날짜의 이미지들 처리
@@ -86,7 +78,7 @@ for date in $(echo ${(k)date_files} | tr ' ' '\n' | sort -r); do
         fi
         
         # 템플릿에 데이터 적용
-        sed -e "s|{{image_path}}|../$relative_path|g" \
+        sed -e "s|{{image_path}}|$relative_path|g" \
             -e "s|{{datetime}}|$datetime|g" \
             -e "s|{{camera_model}}|$camera_model|g" \
             -e "s|{{lens_info}}|$lens_info|g" \
