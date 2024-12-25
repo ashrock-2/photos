@@ -1,3 +1,12 @@
+@font-face {
+  font-family: "MesloLGLDZ Nerd Font Mono";
+  src: local("MesloLGLDZ Nerd Font Mono"),
+    url("/fonts/MesloLGLDZNerdFontMono-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 *,
 *::before,
 *::after {
@@ -6,6 +15,7 @@
 
 * {
   margin: 0;
+  font-family: "MesloLGLDZ Nerd Font Mono", monospace;
 }
 
 body {
@@ -35,12 +45,6 @@ img {
   gap: 0.5rem;
 }
 
-.metadata dl > div {
-  margin: 0.25rem 0;
-  font-family: system-ui, -apple-system, sans-serif;
-}
-
 .metadata dt {
-  font-weight: 500;
-  margin-bottom: 0.25rem;
+  font-weight: 600;
 }
