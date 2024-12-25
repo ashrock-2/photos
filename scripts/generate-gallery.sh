@@ -53,11 +53,11 @@ for image in "$PHOTO_DIR"/*.JPG; do
     if [ ! -z "$lat" ] && [ ! -z "$lon" ]; then
         gps_position="$lat, $lon"
         gps_maps_link="https://maps.google.com/?q=$lat,$lon"
-        gps_altitude="$alt m"
+        gps_altitude="$alt meters"
     else
-        gps_position="정보 없음"
+        gps_position="No data"
         gps_maps_link=""
-        gps_altitude="정보 없음"
+        gps_altitude="No data"
     fi
     
     # 템플릿 파일 읽고 변수 치환
