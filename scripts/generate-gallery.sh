@@ -10,6 +10,7 @@ fi
 PHOTO_DIR="$1"
 SCRIPT_DIR="$(dirname "$0")"
 PROJECT_ROOT="$(realpath "$SCRIPT_DIR/..")"
+TEMPLATE_DIR="$SCRIPT_DIR/templates"
 
 # 디렉토리 존재 확인
 if [ ! -d "$PHOTO_DIR" ]; then
@@ -23,17 +24,8 @@ if ! command -v exiftool &> /dev/null; then
     exit 1
 fi
 
-# HTML 시작 부분 생성
-cat > "$PROJECT_ROOT/index.html" << EOL
-<head>
-  <title>ashrock-photos</title>
-  <link rel="stylesheet" type="text/css" href="style.css" />
-  <link rel="icon" type="image/svg+xml" href="favicon.ico" />
-</head>
-
-<body>
-  <main>
-EOL
+# HTML 헤더 복사
+cat "$TEMPLATE_DIR/header.html" > "$PROJECT_ROOT/index.html"
 
 # 지정된 디렉토리의 모든 JPG 파일 처리
 for image in "$PHOTO_DIR"/*.JPG; do
@@ -49,24 +41,15 @@ for image in "$PHOTO_DIR"/*.JPG; do
     iso=$(exiftool -ISO -s -s -s "$image")
     exposure=$(exiftool -ExposureTime -s -s -s "$image")
     
-    # HTML에 이미지와 메타데이터 추가
-    cat >> "$PROJECT_ROOT/index.html" << EOL
-    <div>
-      <img src="$relative_path" />
-      <div class="metadata">
-        <p>촬영 시간: $datetime</p>
-        <p>조리개: f/$fnumber</p>
-        <p>ISO: $iso</p>
-        <p>셔터 스피드: $exposure</p>
-      </div>
-    </div>
-EOL
+    # 템플릿 파일 읽고 변수 치환
+    sed -e "s|{{image_path}}|$relative_path|g" \
+        -e "s|{{datetime}}|$datetime|g" \
+        -e "s|{{fnumber}}|$fnumber|g" \
+        -e "s|{{iso}}|$iso|g" \
+        -e "s|{{exposure}}|$exposure|g" \
+        "$TEMPLATE_DIR/photo-item.html" >> "$PROJECT_ROOT/index.html"
 done
 
-# HTML 마무리
-cat >> "$PROJECT_ROOT/index.html" << EOL
-  </main>
-</body>
-EOL
+cat "$TEMPLATE_DIR/footer.html" >> "$PROJECT_ROOT/index.html"
 
 echo "갤러리가 생성되었습니다!" 
