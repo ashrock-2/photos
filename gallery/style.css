@@ -60,12 +60,15 @@ img {
   margin-bottom: 1rem;
 }
 
-.date-list a {
+a {
   color: hsl(240, 42%, 92%);
   text-decoration: none;
-  font-size: 1.2rem;
+
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
-.date-list a:hover {
-  text-decoration: underline;
+.date-list a {
+  font-size: 1.2rem;
 }

@@ -42,8 +42,8 @@ for image in "$PHOTO_DIR"/*.JPG; do
 done
 
 # 메인 인덱스 HTML 시작
-cat "$TEMPLATE_DIR/header.html" > "$PROJECT_ROOT/index.html"
-echo "<ul class='date-list'>" >> "$PROJECT_ROOT/index.html"
+cat "$TEMPLATE_DIR/header.html" > "$OUTPUT_DIR/index.html"
+echo "<ul class='date-list'>" >> "$OUTPUT_DIR/index.html"
 
 # 날짜를 정렬하여 처리
 for date in $(echo ${(k)date_files} | tr ' ' '\n' | sort -r); do
@@ -53,8 +53,8 @@ for date in $(echo ${(k)date_files} | tr ' ' '\n' | sort -r); do
     cat "$TEMPLATE_DIR/header.html" > "$output_file"
     echo "<h2>$date</h2>" >> "$output_file"
     
-    # 인덱스 페이지에 링크 추가
-    echo "<li><a href='gallery/$date.html'>$date</a></li>" >> "$PROJECT_ROOT/index.html"
+    # 인덱스 페이지에 링크 추가 (상대 경로 수정)
+    echo "<li><a href='$date.html'>$date</a></li>" >> "$OUTPUT_DIR/index.html"
     
     # 해당 날짜의 이미지들 처리
     for image in ${=date_files[$date]}; do
@@ -104,7 +104,7 @@ for date in $(echo ${(k)date_files} | tr ' ' '\n' | sort -r); do
 done
 
 # 메인 인덱스 HTML 완성
-echo "</ul>" >> "$PROJECT_ROOT/index.html"
-cat "$TEMPLATE_DIR/footer.html" >> "$PROJECT_ROOT/index.html"
+echo "</ul>" >> "$OUTPUT_DIR/index.html"
+cat "$TEMPLATE_DIR/footer.html" >> "$OUTPUT_DIR/index.html"
 
 echo "갤러리가 생성되었습니다!" 
