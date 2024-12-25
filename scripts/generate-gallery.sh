@@ -10,7 +10,7 @@ fi
 PHOTO_DIR="$1"
 SCRIPT_DIR="$(dirname "$0")"
 PROJECT_ROOT="$(realpath "$SCRIPT_DIR/..")"
-TEMPLATE_DIR="$SCRIPT_DIR/templates"
+TEMPLATE_DIR="$PROJECT_ROOT/templates"
 OUTPUT_DIR="$PROJECT_ROOT/gallery"
 
 # 디렉토리 존재 확인
