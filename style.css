@@ -12,6 +12,16 @@ body {
   line-height: calc(1em + 0.5rem);
   background: hsl(240, 20%, 6%);
   color: hsl(240, 42%, 92%);
-  display: flex;
-  flex-direction: column;
+}
+
+main {
+  display: grid;
+  grid-template-columns: minmax(auto, 1280px);
+  padding: 48px 0px;
+  gap: 48px;
+  justify-self: center;
+}
+
+img {
+  width: 100%;
 }
