@@ -30,6 +30,8 @@ mkdir -p "$OUTPUT_DIR"
 
 # CSS 파일 복사
 cp "$PROJECT_ROOT/style.css" "$OUTPUT_DIR/"
+cp "$PROJECT_ROOT/favicon.ico" "$OUTPUT_DIR/"
+cp -r "$PROJECT_ROOT/fonts" "$OUTPUT_DIR/"
 
 # 날짜별로 이미지 그룹화
 declare -A date_files

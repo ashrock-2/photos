@@ -1,7 +1,7 @@
 @font-face {
   font-family: "MesloLGLDZ Nerd Font Mono";
   src: local("MesloLGLDZ Nerd Font Mono"),
-    url("/fonts/MesloLGLDZNerdFontMono-Regular.ttf") format("truetype");
+    url("fonts/MesloLGLDZNerdFontMono-Regular.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -27,13 +27,20 @@ body {
 main {
   display: grid;
   grid-template-columns: minmax(auto, 1280px);
-  padding: 48px;
+  padding: 24px;
   gap: 48px;
   justify-self: center;
 }
 
 img {
   width: 100%;
+}
+
+@media screen and (max-width: 1232px) {
+  img {
+    width: calc(100% + 48px);
+    margin-left: -24px;
+  }
 }
 
 .metadata dl {
