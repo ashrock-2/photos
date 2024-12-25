@@ -27,7 +27,7 @@ body {
 main {
   display: grid;
   grid-template-columns: minmax(auto, 1280px);
-  padding: 48px 0px;
+  padding: 48px;
   gap: 48px;
   justify-self: center;
 }
@@ -49,21 +49,16 @@ img {
   font-weight: 600;
 }
 
-.date-list {
-    list-style: none;
-    padding: 0;
-}
-
 .date-list li {
-    margin-bottom: 1rem;
+  margin-bottom: 1rem;
 }
 
 .date-list a {
-    color: hsl(240, 42%, 92%);
-    text-decoration: none;
-    font-size: 1.2rem;
+  color: hsl(240, 42%, 92%);
+  text-decoration: none;
+  font-size: 1.2rem;
 }
 
 .date-list a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
