@@ -1,14 +1,43 @@
-<div>
-  <img src="{{image_path}}" />
-  <div class="metadata">
-    <p>Date Taken: {{datetime}}</p>
-    <p>Camera: {{camera_model}}</p>
-    <p>Lens: {{lens_info}}</p>
-    <p>Focal Length: {{focal_length}}</p>
-    <p>Aperture: f/{{fnumber}}</p>
-    <p>ISO: {{iso}}</p>
-    <p>Shutter Speed: {{exposure}}</p>
-    <p>Location: {{gps_position}}</p>
-    <p>Altitude: {{gps_altitude}}</p>
-  </div>
-</div>
+<figure>
+  <img src="{{image_path}}" alt="Photograph taken on {{datetime}}" />
+  <figcaption class="metadata">
+    <dl>
+      <div>
+        <dt>Date Taken</dt>
+        <dd>{{datetime}}</dd>
+      </div>
+      <div>
+        <dt>Camera</dt>
+        <dd>{{camera_model}}</dd>
+      </div>
+      <div>
+        <dt>Lens</dt>
+        <dd>{{lens_info}}</dd>
+      </div>
+      <div>
+        <dt>Focal Length</dt>
+        <dd>{{focal_length}}</dd>
+      </div>
+      <div>
+        <dt>Aperture</dt>
+        <dd>f/{{fnumber}}</dd>
+      </div>
+      <div>
+        <dt>ISO</dt>
+        <dd>{{iso}}</dd>
+      </div>
+      <div>
+        <dt>Shutter Speed</dt>
+        <dd>{{exposure}}</dd>
+      </div>
+      <div>
+        <dt>Location</dt>
+        <dd>{{gps_position}}</dd>
+      </div>
+      <div>
+        <dt>Altitude</dt>
+        <dd>{{gps_altitude}}</dd>
+      </div>
+    </dl>
+  </figcaption>
+</figure>

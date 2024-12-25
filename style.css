@@ -26,9 +26,21 @@ img {
   width: 100%;
 }
 
-.metadata {
+.metadata dl {
   margin-top: 1rem;
   font-size: 0.9rem;
-  justify-self: end;
+  color: hsl(240, 42%, 82%);
   display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 0.5rem;
+}
+
+.metadata dl > div {
+  margin: 0.25rem 0;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.metadata dt {
+  font-weight: 500;
+  margin-bottom: 0.25rem;
 }
